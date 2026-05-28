@@ -1,16 +1,8 @@
 export default function parseInput() {
     const [...args] = process.argv.slice(2);
 
-    const flags = Object.fromEntries(
-        args
-            .filter(a => a.includes("="))
-            .map(a => a.split("="))
-    );
-
     return {
-        folderName: flags?.startRoute || null,
-        isAnnounce: flags?.isAnnounce || true,
-        showLog: flags?.showLog || false,
+        startRoute: args[0] || null,
         toPath: process.cwd()
     };
 };
