@@ -5,7 +5,8 @@ const startFunc = async () => {
 
     await fn({
         startRoute: "folder1",
-        toPath: process.cwd()
+        toPath: process.cwd(),
+        showLog: true
     });
 };
 

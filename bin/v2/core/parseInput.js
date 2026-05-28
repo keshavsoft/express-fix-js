@@ -3,6 +3,7 @@ export default function parseInput() {
 
     return {
         startRoute: args[0] || null,
+        showLog: args[1] || false,
         toPath: process.cwd()
     };
 };

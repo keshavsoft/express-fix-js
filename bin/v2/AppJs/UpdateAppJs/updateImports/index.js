@@ -14,6 +14,7 @@ const updateImports = ({ appJsPath, endpoint, showLog }) => {
 
     if (checkDuplicate(content, endpoint)) {
         summary.import.skipped = true;
+        summary.import.skipReason = "Duplicate in import";
 
         if (showLog) console.log(summary);
 

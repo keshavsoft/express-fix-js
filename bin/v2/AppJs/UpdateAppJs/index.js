@@ -16,10 +16,12 @@ const updateAppJs = ({ appJsPath, endpoint, showLog = false }) => {
         fs
     });
 
-    updateImports({
+    const fromImports = updateImports({
         appJsPath,
         endpoint
     });
+
+    if (showLog) console.log("fromImports : ", fromImports);
 
     updateAppUse({
         appJsPath,
