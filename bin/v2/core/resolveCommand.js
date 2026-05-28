@@ -1,4 +1,4 @@
-import StartEndPoint from "../StartEndPoint/index.js";
+import StartEndPoint from "../AppJs/index.js";
 import AddSubRoute from "../AddSubRoute/index.js";
 import AddTableName from "../Tables/index.js";
 
