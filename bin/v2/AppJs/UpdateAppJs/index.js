@@ -3,7 +3,7 @@ import fs from "fs";
 import updateImports from "./updateImports/index.js";
 import updateAppUse from "./updateUse/index.js";
 
-const updateAppJs = ({ appJsPath, endpoint, showLog }) => {
+const updateAppJs = ({ appJsPath, endpoint, showLog = false }) => {
     if (!fs.existsSync(appJsPath)) {
         if (showLog) console.log("app.js file not found ?");
 

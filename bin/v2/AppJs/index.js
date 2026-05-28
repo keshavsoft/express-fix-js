@@ -5,8 +5,7 @@ export default ({ folderName = "", toPath }) => {
 
     const fromUpdate = updateAppJs({
         appJsPath: `${localToPath}/app.js`,
-        endpoint: folderName,
-        showLog
+        endpoint: folderName
     });
 
     return true;
