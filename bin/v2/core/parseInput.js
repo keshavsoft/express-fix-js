@@ -8,7 +8,7 @@ export default function parseInput() {
     );
 
     return {
-        folderName: flags?.folderName || null,
+        folderName: flags?.startRoute || null,
         isAnnounce: flags?.isAnnounce || true,
         showLog: flags?.showLog || false,
         toPath: process.cwd()

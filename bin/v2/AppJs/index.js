@@ -1,11 +1,12 @@
 import updateAppJs from "./UpdateAppJs/index.js";
 
-export default ({ folderName = "", toPath }) => {
+export default ({ startRoute = "", toPath }) => {
     const localToPath = toPath;
+    console.log("aaaaaaaa : ", startRoute, toPath);
 
     const fromUpdate = updateAppJs({
         appJsPath: `${localToPath}/app.js`,
-        endpoint: folderName
+        endpoint: startRoute
     });
 
     return true;
