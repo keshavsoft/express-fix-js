@@ -1,9 +1,9 @@
-export default function parseInput() {
+export default function parseInput({ endpoint, toPath, showLog }) {
     const [...args] = process.argv.slice(2);
 
     return {
-        startRoute: args[0] || null,
-        showLog: args[1] || false,
-        toPath: process.cwd()
+        endpoint: args[0] || endpoint,
+        showLog: args[1] || showLog,
+        toPath: process.cwd() || endpoint
     };
 };

@@ -1,11 +1,11 @@
 import getLatestVersion from "./bin/core/getLatestVersion.js";
 
-const load = async () => {
+const load = async ({ endpoint, toPath, showLog }) => {
     const v = getLatestVersion();
 
     const module = await import(`./bin/${v}/start.js`);
 
-    return await module.default;
+    await module.default({});
 };
 
 export default load;
