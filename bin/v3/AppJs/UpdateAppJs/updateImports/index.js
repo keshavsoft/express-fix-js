@@ -12,9 +12,17 @@ const updateImports = ({ appJsPath, endpoint, showLog }) => {
     const content = readFile(appJsPath);
     const importLine = buildImport({ inEndpoint: endpoint });
 
-    if (checkDuplicate(content, endpoint)) {
+    const duplicateInfo = checkDuplicate({
+        inContent: content,
+        inEndpoint: endpoint,
+        inFilePath: appJsPath
+    });
+
+    if (duplicateInfo.found) {
         summary.import.skipped = true;
         summary.import.skipReason = "Duplicate in import";
+        summary.import.filePath = duplicateInfo.filePath;
+        summary.import.lineNumber = duplicateInfo.lineNumber;
 
         if (showLog) console.log(summary);
 
