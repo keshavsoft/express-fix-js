@@ -1,5 +1,4 @@
 import readFile from "../common/readFile.js";
-import buildImport from "./buildImport.js";
 import checkDuplicate from "./checkDuplicate.js";
 import findInsertIndex from "./findInsertIndex.js";
 import writeFile from "../common/writeFile.js";
