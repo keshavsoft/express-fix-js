@@ -1,15 +1,13 @@
 const checkUseDuplicate = ({
     inContent,
     inEndpoint,
-    inFilePath
+    inFilePath,
+    inSearchText
 }) => {
-    const searchText =
-        `from "./${inEndpoint}/routes.js"`;
-
     const lines = inContent.split("\n");
 
     const lineIndex = lines.findIndex(line =>
-        line.includes(searchText)
+        line.includes(inSearchText)
     );
 
     return {

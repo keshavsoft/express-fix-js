@@ -4,18 +4,33 @@ import checkDuplicate from "./checkDuplicate.js";
 import findInsertIndex from "./findInsertIndex.js";
 import writeFile from "../common/writeFile.js";
 
+const buildLines = (endpoint) => {
+    const importLine = `import { router as routerFrom${endpoint} } from "./${endpoint}/routes.js";`;
+    const duplicationCheck = `from "./${endpoint}/routes.js"`;
+
+    const importInsertAfter =
+        `import`;
+
+    const useLine = `app.use("/${endpoint}", routerFrom${endpoint});`;
+    const useDuplicationCheck = `app.use("/${endpoint}"`;
+
+    return { importLine, duplicationCheck, importInsertAfter, useLine, useDuplicationCheck };
+};
+
 const updateImports = ({ appJsPath, endpoint, showLog }) => {
     const summary = {
         import: { added: false, line: null },
     };
 
     const content = readFile(appJsPath);
-    const importLine = buildImport({ inEndpoint: endpoint });
+
+    const { importLine, duplicationCheck, importInsertAfter } = buildLines(endpoint);
 
     const duplicateInfo = checkDuplicate({
         inContent: content,
         inEndpoint: endpoint,
-        inFilePath: appJsPath
+        inFilePath: appJsPath,
+        inSearchText: duplicationCheck
     });
 
     if (duplicateInfo.found) {
@@ -29,7 +44,10 @@ const updateImports = ({ appJsPath, endpoint, showLog }) => {
         return summary;
     };
 
-    const index = findInsertIndex(content);
+    const index = findInsertIndex({
+        inContent: content,
+        inPattern: importInsertAfter
+    });
 
     const before = content.slice(0, index);
     const lineNumber = before.split("\n").length + 1;

@@ -1,10 +1,23 @@
-const findInsertIndex = (inContent) => {
-    const localContent = inContent;
+const findInsertIndex = ({
+    inContent,
+    inPattern
+}) => {
+    const lines = inContent.split("\n");
 
-    const matches = [...localContent.matchAll(/^\s*import.*$/gm)];
-    const last = matches.at(-1);
+    let lineNumber = -1;
 
-    return last ? last.index + last[0].length : 0;
+    lines.forEach((line, index) => {
+        if (line.includes(inPattern)) {
+            lineNumber = index;
+        };
+    });
+
+    return lineNumber === -1
+        ? 0
+        : lines
+            .slice(0, lineNumber + 1)
+            .join("\n")
+            .length;
 };
 
 export default findInsertIndex;
