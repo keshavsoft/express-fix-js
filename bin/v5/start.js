@@ -7,8 +7,9 @@ import pkg from '../../package.json' with { type: 'json' };
 
 const version = pkg.version;
 
-const run = () => {
+const run = ({ showLog }) => {
   const input = parseInput();
+  console.log("aaaaaaa : ", input, showLog);
 
   if (input.cmd === "--help" || input.cmd === "-h" || input.cmd === "help") return showUsage(version);
 
