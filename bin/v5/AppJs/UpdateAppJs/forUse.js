@@ -12,7 +12,7 @@ const buildLinesForImport = (endpoint) => {
     const duplicationCheck = `app.use("/${endpoint}"`;
 
     const importInsertAfter =
-        'app.use("';
+        'app.use(';
 
     return { importLine, duplicationCheck, importInsertAfter };
 };
