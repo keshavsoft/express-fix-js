@@ -9,7 +9,6 @@ const version = pkg.version;
 
 const run = ({ endpoint, toPath, showLog }) => {
   const input = parseInput({ endpoint, toPath, showLog });
-  console.log("aaaaaaa : ", input, showLog);
 
   if (input.cmd === "--help" || input.cmd === "-h" || input.cmd === "help") return showUsage(version);
 
