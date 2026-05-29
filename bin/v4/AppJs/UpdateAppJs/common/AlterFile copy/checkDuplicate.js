@@ -1,5 +1,6 @@
 const checkUseDuplicate = ({
     inContent,
+    inEndpoint,
     inFilePath,
     inSearchText
 }) => {

@@ -13,17 +13,18 @@ const buildLines = (endpoint) => {
     return { importLine, duplicationCheck, importInsertAfter };
 };
 
-const updateImports = ({ appJsPath, importLine, duplicationCheck, importInsertAfter,
-    showLog = false }) => {
-
+const updateImports = ({ appJsPath, endpoint, showLog = false }) => {
     const summary = {
         import: { added: false, line: null },
     };
 
     const content = readFile(appJsPath);
 
+    const { importLine, duplicationCheck, importInsertAfter } = buildLines(endpoint);
+
     const duplicateInfo = checkDuplicate({
         inContent: content,
+        inEndpoint: endpoint,
         inFilePath: appJsPath,
         inSearchText: duplicationCheck
     });
