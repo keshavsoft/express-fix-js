@@ -10,9 +10,6 @@ const buildLines = (endpoint) => {
     const importInsertAfter =
         `import`;
 
-    const importInsertAfter1 =
-        /^\s*import.*$/gm;
-
     return { importLine, duplicationCheck, importInsertAfter };
 };
 
