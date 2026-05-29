@@ -1,58 +1,163 @@
-# Developer Notes – @keshavsoft/kschema-cli
+# Developer Notes 🚀
+
+## Project Name
+
+```bash id="k2m8fa"
+express-fix
+```
 
 ---
 
-## 🎯 Purpose
+# 📌 Purpose
 
-This package is **NOT just a CLI**.
+The purpose of this project is to automatically detect and fix incomplete or broken Express.js backend code structures.
 
-It serves two roles:
-1. CLI tool (via `bin/cli.js`)
-2. Internal SDK used by VS Code extension (EndPointGen)
+This utility helps developers reduce repetitive debugging and manual fixing work in Node.js and Express applications.
 
 ---
 
-## 🧩 Architecture
+# 🎯 Current Fix Capabilities
 
-VS Code Extension (EndPointGen)
-→ triggers commands  
-→ calls orchestration  
-→ imports from `@keshavsoft/kschema-cli`  
-→ uses exported functions (like `express`)  
-→ internally maps to `bin/v12/...` implementation  
+The project currently supports fixing:
 
----
-
-## 🔗 Important Flow
-
-```js
-import { express } from "@keshavsoft/kschema-cli";
-
-## 🔗 Related Projects
-
-### Core Schema Library
-https://www.npmjs.com/package/@keshavsoft/kschema
-
-Minimal config store used internally by CLI.
+* Missing `express` imports
+* Missing router initialization
+* Missing exports
+* Incomplete route files
+* Broken Express.js boilerplate code
 
 ---
 
-### CLI Tool
-https://www.npmjs.com/package/@keshavsoft/kschema-cli
+# 🛠️ Example Fixes
 
-Scaffolding engine used to generate project structures.
+## Missing Import
+
+### Before
+
+```js id="w8n2fp"
+const router = express.Router();
+```
+
+### After
+
+```js id="d3m7rt"
+import express from "express";
+
+const router = express.Router();
+```
 
 ---
 
-### VS Code Extension (Real Usage)
-https://github.com/keshavsoft/EndPointGen
+## Missing Export
 
-This extension uses `@keshavsoft/kschema-cli` internally  
-to generate and manage project structures.
+### Before
+
+```js id="x5q9la"
+const router = express.Router();
+```
+
+### After
+
+```js id="b4t1yc"
+const router = express.Router();
+
+export { router };
+```
 
 ---
 
-## 🧠 Note
+## Missing Router
 
-This CLI is actively used in production via the VS Code extension above.  
-It is not just a standalone tool, but part of a working ecosystem.
+### Before
+
+```js id="f7v2ks"
+import express from "express";
+```
+
+### After
+
+```js id="m8r4pd"
+import express from "express";
+
+const router = express.Router();
+```
+
+---
+
+# 📁 Development Structure
+
+```bash id="u2j6we"
+express-fix
+│
+├── archive
+├── bin
+├── test
+│
+├── index.js
+├── package.json
+├── README.md
+└── CHANGELOG.md
+```
+
+---
+
+# ⚙️ Development Goals
+
+Future improvements planned for this project:
+
+* Auto-fix route methods
+* Fix middleware imports
+* Generate missing async handlers
+* Detect syntax issues
+* Smart code formatting
+* AI-assisted code repair
+
+---
+
+# 🚀 Development Workflow
+
+## Install Dependencies
+
+```bash id="n4c8hz"
+npm install
+```
+
+---
+
+## Run Project
+
+```bash id="q9w3mv"
+node index.js
+```
+
+---
+
+## Test Changes
+
+```bash id="r5y1ta"
+npm test
+```
+
+---
+
+# 🧠 Technologies Used
+
+* Node.js
+* Express.js
+* JavaScript
+* File System APIs
+
+---
+
+# 📄 Notes
+
+* Lightweight utility project
+* Focused on Express.js development
+* Designed for rapid backend fixing
+* Beginner-friendly architecture
+
+---
+
+# 👨‍💻 Maintainer
+
+Developed and maintained by **KeshavSoft**
