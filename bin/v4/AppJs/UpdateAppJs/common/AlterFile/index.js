@@ -7,10 +7,10 @@ const buildLines = (endpoint) => {
     const importLine = `import { router as routerFrom${endpoint} } from "./${endpoint}/routes.js";`;
     const duplicationCheck = `from "./${endpoint}/routes.js"`;
 
-    const importInsertAfter1 =
-        `import`;
-        
     const importInsertAfter =
+        `import`;
+
+    const importInsertAfter1 =
         /^\s*import.*$/gm;
 
     return { importLine, duplicationCheck, importInsertAfter };
