@@ -3,7 +3,9 @@ export default function parseInput({ endpoint, toPath, showLog }) {
 
     return {
         endpoint: args[0] || endpoint,
-        showLog: args[1] || showLog,
-        toPath: process.cwd() || endpoint
+        showLog: args[1] === undefined
+            ? showLog
+            : args[1] === "true",
+        toPath: toPath || process.cwd()
     };
 };
