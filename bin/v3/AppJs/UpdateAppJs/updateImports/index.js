@@ -10,7 +10,7 @@ const updateImports = ({ appJsPath, endpoint, showLog }) => {
     };
 
     const content = readFile(appJsPath);
-    const importLine = buildImport(endpoint);
+    const importLine = buildImport({ inEndpoint: endpoint });
 
     if (checkDuplicate(content, endpoint)) {
         summary.import.skipped = true;
