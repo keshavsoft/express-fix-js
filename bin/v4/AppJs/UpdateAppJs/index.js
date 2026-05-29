@@ -22,7 +22,6 @@ const updateAppJs = ({ appJsPath, endpoint, showLog = false }) => {
     validateEndpoint({ endpoint });
 
     const fromImports = updateImports({
-        appJsPath,
         ...buildLines(endpoint),
         showLog
     });
