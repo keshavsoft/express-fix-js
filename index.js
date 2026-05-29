@@ -5,7 +5,7 @@ const load = async ({ endpoint, toPath, showLog }) => {
 
     const module = await import(`./bin/${v}/start.js`);
 
-    await module.default({});
+    await module.default({ endpoint, toPath, showLog });
 };
 
 export default load;
