@@ -2,9 +2,9 @@
 
 import fs from "fs";
 
-const validateAppJsPath = ({ appJsPath }) => {
-    if (!fs.existsSync(appJsPath)) {
-        throw new Error("app.js file not found");
+const validateAppJsPath = ({ jsFilePath }) => {
+    if (!fs.existsSync(jsFilePath)) {
+        throw new Error(`${jsFilePath} file not found`);
     };
 };
 

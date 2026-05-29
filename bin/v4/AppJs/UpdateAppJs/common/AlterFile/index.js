@@ -2,29 +2,24 @@ import readFile from "../readFile.js";
 import checkDuplicate from "./checkDuplicate.js";
 import findInsertIndex from "./findInsertIndex.js";
 import writeFile from "../writeFile.js";
+import validateAppJsPath from "../../validations/validateAppJsPath.js";
 
-const buildLines = (endpoint) => {
-    const importLine = `import { router as routerFrom${endpoint} } from "./${endpoint}/routes.js";`;
-    const duplicationCheck = `from "./${endpoint}/routes.js"`;
-
-    const importInsertAfter =
-        `import`;
-
-    return { importLine, duplicationCheck, importInsertAfter };
-};
-
-const updateImports = ({ appJsPath, importLine, duplicationCheck, importInsertAfter,
+const updateImports = ({ jsFilePath, importLine, duplicationCheck, importInsertAfter,
     showLog = false }) => {
+
+    validateAppJsPath({
+        jsFilePath
+    });
 
     const summary = {
         import: { added: false, line: null },
     };
 
-    const content = readFile(appJsPath);
+    const content = readFile(jsFilePath);
 
     const duplicateInfo = checkDuplicate({
         inContent: content,
-        inFilePath: appJsPath,
+        inFilePath: jsFilePath,
         inSearchText: duplicationCheck
     });
 
@@ -50,7 +45,7 @@ const updateImports = ({ appJsPath, importLine, duplicationCheck, importInsertAf
     const updated =
         before + "\n" + importLine + content.slice(index);
 
-    writeFile(appJsPath, updated);
+    writeFile(jsFilePath, updated);
 
     summary.import.added = true;
     summary.import.line = lineNumber;
